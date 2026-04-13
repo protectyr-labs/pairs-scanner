@@ -37,6 +37,14 @@ print(f"Tradeable: {result.tradeable}")        # True if quality >= 70
 - **Batch scanning** -- `scan_pairs(data, pairs, min_quality)` for portfolio-wide screening
 - **Actionable signals** -- `LONG_SPREAD`, `SHORT_SPREAD`, or `NEUTRAL` with configurable thresholds
 
+## Use Cases
+
+**Quantitative trading research** -- Screen pairs of stocks/ETFs for cointegration. Find tradeable pairs with mean-reverting spreads and reasonable half-lives.
+
+**Risk management** -- Monitor existing pair positions. When the spread z-score exceeds thresholds, generate entry/exit signals.
+
+**Academic research** -- Test cointegration hypotheses across asset classes (equities, crypto, commodities). The quality score provides a standardized comparison metric.
+
 ## What the Metrics Mean
 
 | Metric | What It Tells You |
