@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 220">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="lineA" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#60a5fa" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#60a5fa" stop-opacity="0.7"/>
+    </linearGradient>
+    <linearGradient id="lineB" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#94a3b8" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#94a3b8" stop-opacity="0.7"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="alertGlow">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <clipPath id="chartClip">
+      <rect x="680" y="20" width="480" height="170" rx="4"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="220" fill="url(#bg)" rx="6"/>
+
+  <!-- Subtle grid on right side -->
+  <g opacity="0.06" clip-path="url(#chartClip)">
+    <line x1="680" y1="50" x2="1160" y2="50" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="680" y1="80" x2="1160" y2="80" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="680" y1="110" x2="1160" y2="110" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="680" y1="140" x2="1160" y2="140" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="680" y1="170" x2="1160" y2="170" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="760" y1="20" x2="760" y2="190" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="840" y1="20" x2="840" y2="190" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="920" y1="20" x2="920" y2="190" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="1000" y1="20" x2="1000" y2="190" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="1080" y1="20" x2="1080" y2="190" stroke="#e2e8f0" stroke-width="0.5"/>
+  </g>
+
+  <!-- Price Path A (blue) - tracks with B then diverges upward at ~x=1000 -->
+  <g clip-path="url(#chartClip)">
+    <polyline
+      points="700,120 720,115 740,118 760,110 780,108 800,112 820,105 840,100 860,104 880,98 900,95 920,92 940,96 960,90 980,88 1000,82 1020,72 1040,60 1060,50 1080,42 1100,38 1120,35 1140,30"
+      fill="none" stroke="url(#lineA)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+
+    <!-- Price Path B (gray) - tracks with A then diverges downward at ~x=1000 -->
+    <polyline
+      points="700,122 720,118 740,120 760,113 780,110 800,115 820,108 840,103 860,106 880,100 900,98 920,94 940,99 960,93 980,92 1000,88 1020,96 1040,105 1060,115 1080,125 1100,132 1120,138 1140,145"
+      fill="none" stroke="url(#lineB)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+
+    <!-- Cointegrated region bracket -->
+    <line x1="700" y1="185" x2="990" y2="185" stroke="#475569" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+    <text x="845" y="196" font-family="monospace" font-size="9" fill="#475569" text-anchor="middle">cointegrated</text>
+
+    <!-- Divergence zone highlight -->
+    <rect x="1000" y="25" width="150" height="165" fill="#60a5fa" opacity="0.04" rx="3"/>
+
+    <!-- Alert signal at divergence point -->
+    <circle cx="1000" cy="85" r="8" fill="none" stroke="#f59e0b" stroke-width="1.5" opacity="0.9" filter="url(#alertGlow)"/>
+    <circle cx="1000" cy="85" r="3" fill="#f59e0b" opacity="0.9"/>
+    <line x1="1000" y1="85" x2="1000" y2="25" stroke="#f59e0b" stroke-width="0.8" stroke-dasharray="4,3" opacity="0.6"/>
+    <text x="1000" y="20" font-family="monospace" font-size="8" fill="#f59e0b" text-anchor="middle" font-weight="bold" opacity="0.9">SIGNAL</text>
+
+    <!-- Spread widening arrows -->
+    <line x1="1110" y1="42" x2="1110" y2="134" stroke="#f59e0b" stroke-width="0.8" opacity="0.5"/>
+    <polygon points="1110,42 1107,48 1113,48" fill="#f59e0b" opacity="0.5"/>
+    <polygon points="1110,134 1107,128 1113,128" fill="#f59e0b" opacity="0.5"/>
+    <text x="1150" y="90" font-family="monospace" font-size="7" fill="#f59e0b" text-anchor="middle" opacity="0.6">z &gt; 2</text>
+
+    <!-- Legend -->
+    <line x1="700" y1="30" x2="720" y2="30" stroke="#60a5fa" stroke-width="2"/>
+    <text x="724" y="34" font-family="monospace" font-size="8" fill="#94a3b8">Asset A</text>
+    <line x1="770" y1="30" x2="790" y2="30" stroke="#94a3b8" stroke-width="2"/>
+    <text x="794" y="34" font-family="monospace" font-size="8" fill="#94a3b8">Asset B</text>
+  </g>
+
+  <!-- Title block (left side) -->
+  <text x="50" y="62" font-family="system-ui, -apple-system, sans-serif" font-size="32" fill="#e2e8f0" font-weight="700" letter-spacing="-0.5">pairs-scanner</text>
+  <text x="50" y="88" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#94a3b8" font-weight="400">Statistical arbitrage pairs analysis toolkit</text>
+
+  <!-- Key metrics -->
+  <text x="50" y="120" font-family="monospace" font-size="11" fill="#60a5fa">Engle-Granger cointegration</text>
+  <text x="50" y="138" font-family="monospace" font-size="11" fill="#60a5fa">Hurst exponent</text>
+  <text x="50" y="156" font-family="monospace" font-size="11" fill="#60a5fa">Half-life of mean reversion</text>
+
+  <!-- Status pill -->
+  <rect x="50" y="172" width="72" height="20" rx="10" fill="#1e3a5f"/>
+  <text x="86" y="186" font-family="monospace" font-size="10" fill="#60a5fa" text-anchor="middle">Python</text>
+  <rect x="130" y="172" width="52" height="20" rx="10" fill="#1e3a5f"/>
+  <text x="156" y="186" font-family="monospace" font-size="10" fill="#60a5fa" text-anchor="middle">MIT</text>
+
+  <!-- Bottom tag -->
+  <text x="1160" y="210" font-family="monospace" font-size="10" fill="#475569" text-anchor="end">protectyr-labs/pairs-scanner</text>
+
+  <!-- Thin accent line -->
+  <rect x="0" y="218" width="1200" height="2" fill="#60a5fa" opacity="0.3"/>
+</svg>
